@@ -1316,16 +1316,16 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1707956935,
-        "narHash": "sha256-ZL2TrjVsiFNKOYwYQozpbvQSwvtV/3Me7Zwhmdsfyu4=",
-        "owner": "nixos",
+        "lastModified": 1708229353,
+        "narHash": "sha256-H5kh00SF9amufNXfrpqEtoaI8pzov55bLvJ6B4BdcK0=",
+        "owner": "khaneliman",
         "repo": "nixpkgs",
-        "rev": "a4d4fe8c5002202493e87ec8dbc91335ff55552c",
+        "rev": "4594a0982e1e1201bb10267b363ab1c92f54a830",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
+        "owner": "khaneliman",
+        "ref": "nwg-hello-module",
         "repo": "nixpkgs",
         "type": "github"
       }

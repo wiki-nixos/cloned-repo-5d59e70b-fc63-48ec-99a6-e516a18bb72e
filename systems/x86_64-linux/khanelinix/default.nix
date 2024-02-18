@@ -28,7 +28,13 @@ in
         monitors = ./monitors.xml;
       };
 
+      nwg-hello = {
+        hyprlandOutput = builtins.readFile ./hyprlandOutput;
+        swayOutput = builtins.readFile ./swayOutput;
+      };
+
       regreet = {
+        # hyprlandOutput = builtins.readFile ./hyprlandOutput;
         swayOutput = builtins.readFile ./swayOutput;
       };
     };
@@ -93,7 +99,7 @@ in
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM7UBwfd7+K0mdkAIb2TE6RzMu6L4wZnG/anuoYqJMPB"
         ];
 
-        # TODO: make part of ssh config proper 
+        # TODO: make part of ssh config proper
         extraConfig = ''
           Host server
             User ${config.khanelinix.user.name}

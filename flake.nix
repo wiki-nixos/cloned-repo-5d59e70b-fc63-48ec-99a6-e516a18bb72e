@@ -89,7 +89,8 @@
 
     # NixPkgs (nixos-unstable)
     nixpkgs = {
-      url = "github:nixos/nixpkgs/nixos-unstable";
+      # url = "github:nixos/nixpkgs/nixos-unstable";
+      url = "github:khaneliman/nixpkgs/nwg-hello-module";
     };
 
     # NixPkgs (master)
