@@ -9,7 +9,10 @@ let
 
   cfg = config.${namespace}.system.xdg;
 
-  browser = [ "firefox.desktop" ];
+  browser = [
+    "firefox.desktop"
+    "firefox-devedition.desktop"
+  ];
   editor = [ "nvim.desktop" ];
   excel = [ "libreoffice-calc.desktop" ];
   fileManager = [ "thunar.desktop" ];
