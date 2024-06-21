@@ -17,9 +17,10 @@ in
 
     theme = {
       name = mkOpt str "catppuccin-macchiato-blue-standard+normal" "The name of the GTK theme to apply.";
-      package = mkOpt package (pkgs.catppuccin-gtk.override {
+      package = mkOpt package (pkgs.khanelinix.catppuccin-gtk.override {
         accents = [ "blue" ];
         size = "standard";
+        tweaks = [ "normal" ];
         variant = "macchiato";
       }) "The package to use for the theme.";
     };

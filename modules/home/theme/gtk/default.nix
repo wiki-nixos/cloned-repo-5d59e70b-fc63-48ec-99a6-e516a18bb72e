@@ -40,9 +40,10 @@ in
 
     theme = {
       name = mkOpt types.str "catppuccin-macchiato-blue-standard+normal" "The name of the theme to apply";
-      package = mkOpt types.package (pkgs.catppuccin-gtk.override {
+      package = mkOpt types.package (pkgs.khanelinix.catppuccin-gtk.override {
         accents = [ "blue" ];
         size = "standard";
+        tweaks = [ "normal" ];
         variant = "macchiato";
       }) "The package to use for the theme";
     };
@@ -87,6 +88,18 @@ in
     gtk = {
       enable = true;
 
+      theme = {
+        inherit (cfg.theme) name package;
+      };
+
+      cursorTheme = {
+        inherit (cfg.cursor) name package size;
+      };
+
+      iconTheme = {
+        inherit (cfg.icon) name package;
+      };
+
       font = {
         name = osConfig.${namespace}.system.fonts.default;
       };
@@ -102,7 +115,7 @@ in
       };
 
       gtk3.extraConfig = {
-        gtk-application-prefer-dark-theme = true;
+        gtk-application-prefer-dark-theme = 1;
         gtk-button-images = 1;
         gtk-decoration-layout = "appmenu:none";
         gtk-enable-event-sounds = 0;
@@ -117,7 +130,7 @@ in
       };
 
       gtk4.extraConfig = {
-        gtk-application-prefer-dark-theme = true;
+        gtk-application-prefer-dark-theme = 1;
         gtk-decoration-layout = "appmenu:none";
         gtk-enable-event-sounds = 0;
         gtk-enable-input-feedback-sounds = 0;
@@ -128,10 +141,26 @@ in
       };
     };
 
-    xdg.systemDirs.data =
-      let
-        schema = pkgs.gsettings-desktop-schemas;
-      in
-      [ "${schema}/share/gsettings-schemas/${schema.name}" ];
+    xdg = {
+      configFile =
+        let
+          gtk3Dir = "${cfg.theme.package}/share/themes/${cfg.theme.name}/gtk-3.0";
+          gtk4Dir = "${cfg.theme.package}/share/themes/${cfg.theme.name}/gtk-4.0";
+        in
+        {
+          "gtk-3.0/assets".source = "${gtk3Dir}/assets";
+          "gtk-3.0/gtk.css".source = "${gtk3Dir}/gtk.css";
+          "gtk-3.0/gtk-dark.css".source = "${gtk3Dir}/gtk-dark.css";
+          "gtk-4.0/assets".source = "${gtk4Dir}/assets";
+          "gtk-4.0/gtk.css".source = "${gtk4Dir}/gtk.css";
+          "gtk-4.0/gtk-dark.css".source = "${gtk4Dir}/gtk-dark.css";
+        };
+
+      systemDirs.data =
+        let
+          schema = pkgs.gsettings-desktop-schemas;
+        in
+        [ "${schema}/share/gsettings-schemas/${schema.name}" ];
+    };
   };
 }

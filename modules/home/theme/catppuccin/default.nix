@@ -98,8 +98,10 @@ in
 
           theme = {
             name = "catppuccin-macchiato-blue-standard+normal";
-            package = pkgs.catppuccin-gtk.override {
+            package = pkgs.khanelinix.catppuccin-gtk.override {
               accents = [ "blue" ];
+              size = "standard";
+              tweaks = [ "normal" ];
               variant = "macchiato";
             };
           };
@@ -144,23 +146,6 @@ in
 
       sessionVariables = mkIf pkgs.stdenv.isLinux {
         CURSOR_THEME = config.${namespace}.theme.gtk.cursor.name;
-      };
-    };
-
-    gtk.catppuccin = mkIf pkgs.stdenv.isLinux {
-      enable = true;
-
-      inherit (cfg) accent;
-      size = "standard";
-
-      cursor = {
-        enable = true;
-        inherit (cfg) accent;
-      };
-
-      icon = {
-        enable = true;
-        inherit (cfg) accent;
       };
     };
 
@@ -285,5 +270,19 @@ in
         # yazi.catppuccin.enable = true;
         # rofi.catppuccin.enable = true;
       };
+
+    xdg = {
+      configFile =
+        let
+          gtk4Dir = "${config.${namespace}.theme.gtk.theme.package}/share/themes/${
+            config.${namespace}.theme.gtk.theme.name
+          }/gtk-4.0";
+        in
+        {
+          "gtk-4.0/assets".source = "${gtk4Dir}/assets";
+          "gtk-4.0/gtk.css".source = "${gtk4Dir}/gtk.css";
+          "gtk-4.0/gtk-dark.css".source = "${gtk4Dir}/gtk-dark.css";
+        };
+    };
   };
 }
