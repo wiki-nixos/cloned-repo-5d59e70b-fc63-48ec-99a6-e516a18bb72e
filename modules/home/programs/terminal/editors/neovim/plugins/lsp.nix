@@ -109,6 +109,8 @@ in
 
           csharp-ls = {
             enable = true;
+            package = pkgs.khanelinix.csharp-ls;
+
             filetypes = [ "cs" ];
           };
 
