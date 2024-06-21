@@ -82,8 +82,7 @@
 
     # NixPkgs (nixos-unstable)
     nixpkgs = {
-      # url = "github:nixos/nixpkgs/nixos-unstable";
-      url = "github:khaneliman/nixpkgs/cgtk";
+      url = "github:nixos/nixpkgs/nixos-unstable";
     };
 
     # NixPkgs-Wayland
